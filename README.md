@@ -1,5 +1,7 @@
 # loon-antigravity-rules
 
+[![覆盖缺口校验](https://github.com/dayvight/loon-antigravity-rules/actions/workflows/coverage-check.yml/badge.svg)](https://github.com/dayvight/loon-antigravity-rules/actions/workflows/coverage-check.yml)
+
 补 [kelee AI.lsr](https://kelee.one/Tool/Loon/Lsr/AI.lsr) 与 [VPSDance/ai-proxy-rules](https://github.com/VPSDance/ai-proxy-rules) 的覆盖缺口 —— Google 账号 / OAuth 登录链路。
 
 ## 解决什么问题
