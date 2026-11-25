@@ -1,0 +1,50 @@
+name: 覆盖缺口校验
+
+on:
+  schedule:
+    # 每天 UTC 02:00 / 北京时间 10:00
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'rules/**'
+      - 'scripts/**'
+      - '.github/workflows/coverage-check.yml'
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: coverage-check
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 准备 Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 校验覆盖缺口
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/check-coverage.mjs
+
+      - name: 提交上游快照变更
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain upstream/)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add upstream/
+            git commit -m "chore: 同步上游规则快照 [skip ci]"
+            git push
+          else
+            echo "上游无变化，跳过提交"
+          fi

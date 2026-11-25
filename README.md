@@ -100,6 +100,35 @@ curl -s "https://policies.google.com/terms?hl=en" | grep -oE '(United States|Hon
 
 返回 `United States` 说明该域名的出口已被 Google 判定为美国。
 
+## 自动校验
+
+`.github/workflows/coverage-check.yml` 每天 UTC 02:00（北京时间 10:00）运行一次：
+
+1. 拉取两份上游规则集最新版本，写入 `upstream/*.list` 快照
+2. 用 24 个关键域名逐一检查是否被「上游规则 + 本仓库补充规则」覆盖
+3. 发现无人覆盖的域名 → 自动开 issue（标题前缀 `[coverage-gap]`；已存在则更新内容，不会每天刷屏）
+4. 上游快照有变化 → 自动提交
+
+### 关于 kelee 源的 Cloudflare 拦截
+
+`kelee.one` 与 `rule.kelee.one` 对数据中心 IP 返回 **HTTP 403**（Cloudflare 拦截），GitHub Actions 的 runner 同样命中。所以脚本内置快照回退：
+
+- 拉取失败时使用 `upstream/kelee-ai.list`，不会把「读不到」误报成「没覆盖」
+- 快照更新方式：本机 Loon 刷新过规则后，从缓存复制
+
+```bash
+cp ~/Library/Application\ Support/com.loon.Loon/remoteRule/<hash>.lsr upstream/kelee-ai.list
+```
+
+### 本地手动跑
+
+```bash
+DRY_RUN=1 node scripts/check-coverage.mjs
+```
+
+输出会同时写入 GitHub Actions 的 Job Summary。
+
 ## License
+
 
 MIT
