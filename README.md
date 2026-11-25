@@ -50,29 +50,29 @@ Google Antigravity 登录时会弹出：
 
 ## 两个文件怎么选
 
-### `rules/antigravity-google-auth.list` —— 精确版（推荐先试）
+### `rules/google-auth.list` —— 精确版（推荐先试）
 
 只补上表 15 个缺口，接在 AI 规则集后面。影响面最小，Gmail / Play / YouTube 不受影响。
 
 ```ini
 [Remote Rule]
-https://raw.githubusercontent.com/dayvight/loon-antigravity-rules/main/rules/antigravity-google-auth.list, policy=AI 手动, tag=Antigravity, enabled=true
+https://raw.githubusercontent.com/dayvight/loon-antigravity-rules/main/rules/google-auth.list, policy=AI 手动, tag=Google-Auth, enabled=true
 ```
 
-### `rules/google-wildcard.list` —— 全域兜底版
+### `rules/google-full.list` —— 全域兜底版
 
 7 条后缀接管整个 Google 生态。Google 以后新增任何域名都不会再漏，代价是 Gmail / Play / YouTube 全部流量也走代理。
 
 ```ini
 [Remote Rule]
-https://raw.githubusercontent.com/dayvight/loon-antigravity-rules/main/rules/google-wildcard.list, policy=AI 手动, tag=Google, enabled=true
+https://raw.githubusercontent.com/dayvight/loon-antigravity-rules/main/rules/google-full.list, policy=AI 手动, tag=Google, enabled=true
 ```
 
 ### jsDelivr 镜像（国内拉取更稳）
 
 ```
-https://cdn.jsdelivr.net/gh/dayvight/loon-antigravity-rules@main/rules/antigravity-google-auth.list
-https://cdn.jsdelivr.net/gh/dayvight/loon-antigravity-rules@main/rules/google-wildcard.list
+https://cdn.jsdelivr.net/gh/dayvight/loon-antigravity-rules@main/rules/google-auth.list
+https://cdn.jsdelivr.net/gh/dayvight/loon-antigravity-rules@main/rules/google-full.list
 ```
 
 ## 放置位置

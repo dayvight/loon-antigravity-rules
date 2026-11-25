@@ -11,7 +11,7 @@
 #   本文件仅包含上述两份规则集「都没有覆盖」的域名，作为补充包使用。
 #
 # 用法（Loon 配置的 [Remote Rule] 段）：
-#   https://raw.githubusercontent.com/dayvight/loon-antigravity-rules/main/rules/antigravity-google-auth.list, policy=AI 手动, tag=Antigravity, enabled=true
+#   https://raw.githubusercontent.com/dayvight/loon-antigravity-rules/main/rules/google-auth.list, policy=AI 手动, tag=Google-Auth, enabled=true
 #
 # policy 请替换为你自己的代理策略组名。
 # ============================================================

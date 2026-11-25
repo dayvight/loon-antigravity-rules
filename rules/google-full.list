@@ -7,7 +7,7 @@
 # 等全部流量也会走代理。
 #
 # 用法（Loon 配置的 [Remote Rule] 段）：
-#   https://raw.githubusercontent.com/dayvight/loon-antigravity-rules/main/rules/google-wildcard.list, policy=AI 手动, tag=Google, enabled=true
+#   https://raw.githubusercontent.com/dayvight/loon-antigravity-rules/main/rules/google-full.list, policy=AI 手动, tag=Google-Full, enabled=true
 # ============================================================
 
 DOMAIN-SUFFIX,google.com

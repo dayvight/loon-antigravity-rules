@@ -36,7 +36,7 @@ const UPSTREAMS = [
   },
 ];
 
-const LOCAL_RULES = 'rules/antigravity-google-auth.list';
+const LOCAL_RULES = 'rules/google-auth.list';
 
 const TARGETS = [
   ['antigravity.google', 'Antigravity 主域'],
